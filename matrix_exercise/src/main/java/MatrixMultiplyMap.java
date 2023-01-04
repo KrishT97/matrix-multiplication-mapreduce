@@ -21,7 +21,6 @@ public class MatrixMultiplyMap extends Mapper<LongWritable, Text, Text, Text> {
         }
         
         int[][] submatrix_c = multiply(submatrix_a, submatrix_b);
-        // Emit the submatrix of C to the reducer
         for (int i = 0; i < submatrix_c.length; i++) {
             for (int j = 0; j < submatrix_c[0].length; j++) {
                 context.write(new Text(i + "," + j), new Text(String.valueOf(submatrix_c[i][j])));
