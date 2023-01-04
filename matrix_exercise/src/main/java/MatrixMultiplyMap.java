@@ -11,7 +11,7 @@ public class MatrixMultiplyMap extends Mapper<LongWritable, Text, Text, Text> {
     private int[][] submatrix_b;
     @Override
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        // Parse the input value into a submatrix of A or B
+        
         int[][] submatrix = parseInputValue(value);
         String matrix = parseInputMatrix(value);
         if (matrix.equals("A")) {
@@ -19,7 +19,7 @@ public class MatrixMultiplyMap extends Mapper<LongWritable, Text, Text, Text> {
         } else {
             submatrix_b = submatrix;
         }
-        // Calculate the submatrix of C
+        
         int[][] submatrix_c = multiply(submatrix_a, submatrix_b);
         // Emit the submatrix of C to the reducer
         for (int i = 0; i < submatrix_c.length; i++) {
